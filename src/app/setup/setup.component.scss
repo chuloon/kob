@@ -1,0 +1,24 @@
+.setup-container {
+    .section {
+        margin-bottom: 15px;
+    }
+    .pair-info {
+        .number {
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .info {
+            display: flex;
+            margin-bottom: 15px;
+
+            .player-name input {
+                width: calc(100% - 10px);
+            }
+
+            &>div {
+                margin-right: 15px;
+            }
+        }
+    }
+}

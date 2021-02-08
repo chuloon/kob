@@ -1,0 +1,40 @@
+<div class="setup-container">
+    <div class="pair-count section">
+        <div class="label">How many pairs do you want in this tournament? Even numbers only please</div>
+        <div class="value">
+            <input [(ngModel)]="numberOfPairs" type="number">
+        </div>
+    </div>
+    <div class="pool-play section">
+        <div class="label">How many games should each pair play in pool play?</div>
+        <div class="value">
+            <input [(ngModel)]="poolPlayGameAmount" type="number">
+        </div>
+    </div>
+    <div class="pool-play section">
+        <div class="label">How many courts are available?</div>
+        <div class="value">
+            <input [(ngModel)]="courtsAvailable" type="number">
+        </div>
+    </div>
+    <hr>
+    <div class="pair-info section">
+        <div class="pair" *ngFor="let pair of pairInfo">
+            <div class="number">Pair {{ pair.teamNumber }}</div>
+            <div class="info">
+                <div>
+                    <div>Player 1:</div>
+                    <div class="player-name"><input [(ngModel)]="pair.player1Name"></div>
+                </div>
+                <div>
+                    <div>Player 2:</div>
+                    <div class="player-name"><input [(ngModel)]="pair.player2Name"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="start-tournament">
+        <button (click)="startTournament()" class="button">Start tournament</button>
+    </div>
+</div>

@@ -1,3 +1,36 @@
 <div class="pool-play-container">
-    
+    <div class="court" *ngFor="let court of courtGames | keyvalue, let i = index">
+        <div class="court-title" *ngIf="$any(court.value).length > 0">Court {{ (i + 1).toString() }}</div>
+        <div class="match-ups" *ngFor="let match of court.value">
+            <div class="team1">
+                <div class="pair">
+                    {{ match.team1.pair1.player1Name | nameShortener }} / {{ match.team1.pair1.player2Name | nameShortener }}
+                </div>
+                <div class="pair">
+                    {{ match.team1.pair2.player1Name | nameShortener }} / {{ match.team1.pair2.player2Name | nameShortener }}
+                </div>
+                <div class="score">
+                    <input type="number" [(ngModel)]="match.team1.score" (input)="inputChange($event)">
+                </div>
+            </div>
+            <div class="vs">
+                vs
+            </div>
+            <div class="team2">
+                <div class="pair">
+                    {{ match.team2.pair1.player1Name | nameShortener }} / {{ match.team2.pair1.player2Name | nameShortener }}
+                </div>
+                <div class="pair">
+                    {{ match.team2.pair2.player1Name | nameShortener }} / {{ match.team2.pair2.player2Name | nameShortener }}
+                </div>
+                <div class="score">
+                    <input type="number" [(ngModel)]="match.team2.score" (input)="inputChange($event)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit">
+        <button (click)="submitPools()">Submit</button>
+    </div>
 </div>

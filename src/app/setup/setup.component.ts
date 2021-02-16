@@ -18,13 +18,14 @@ export class SetupComponent implements OnInit {
 
     this.pairInfo = [];
     for(let i = 0; i < value; i++) {
-      this.pairInfo.push({ teamNumber: i+1, player1Name: "", player2Name: "" })
+      this.pairInfo.push({ pairNumber: i+1, player1Name: "", player2Name: "", pointDifferential: 0 })
     }
   }
   
   pairInfo: Pair[] = [];
   poolPlayGameAmount: number;
   courtsAvailable: number;
+  tournamentCount: number;
 
   constructor(private router: Router) { }
 
@@ -32,12 +33,16 @@ export class SetupComponent implements OnInit {
     this.pairInfo = JSON.parse(localStorage.getItem('pairInfo'));
     if(!this.pairInfo) this.pairInfo = [];
     this._numberOfPairs = this.pairInfo.length;
+    if(this._numberOfPairs == 0) this.numberOfPairs = 16;
 
     this.poolPlayGameAmount = parseInt(localStorage.getItem('poolPlayGameAmount'));
     if(!this.poolPlayGameAmount) this.poolPlayGameAmount = 3;
 
     this.courtsAvailable = parseInt(localStorage.getItem('courtsAvailable'));
     if(!this.courtsAvailable) this.courtsAvailable = 6;
+
+    this.tournamentCount = parseInt(localStorage.getItem('tournamentCount'));
+    if(!this.tournamentCount) this.tournamentCount = 1;
   }
 
   startTournament = () => {
@@ -50,6 +55,7 @@ export class SetupComponent implements OnInit {
     localStorage.setItem('pairInfo', stringData);
     localStorage.setItem('poolPlayGameAmount', this.poolPlayGameAmount.toString());
     localStorage.setItem('courtsAvailable', this.courtsAvailable.toString());
+    localStorage.setItem('tournamentCount', this.tournamentCount.toString());
   }
 
 }

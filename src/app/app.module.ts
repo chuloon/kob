@@ -8,13 +8,15 @@ import { SetupComponent } from './setup/setup.component';
 import { FormsModule } from '@angular/forms';
 import { PoolPlayComponent } from './pool-play/pool-play.component';
 import { CommonModule } from '@angular/common';
+import { TournamentComponent } from './tournament/tournament.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SetupComponent,
     PoolPlayComponent,
-    NameShortenerPipe
+    NameShortenerPipe,
+    TournamentComponent
   ],
   imports: [
     BrowserModule,

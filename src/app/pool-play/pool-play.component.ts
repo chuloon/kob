@@ -1,7 +1,8 @@
 import { Team } from './../classes/team';
 import { Pair } from './../classes/pair';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pool-play',
@@ -16,7 +17,7 @@ export class PoolPlayComponent implements OnInit {
   roundTeams = [];
   courtGames = {};
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.pairInfo = JSON.parse(localStorage.getItem('pairInfo'));
@@ -49,8 +50,10 @@ export class PoolPlayComponent implements OnInit {
     }
   }
 
+  // Refactor idea: from the start, build an array of pairs in each round. pick off from the teams that aren't in that array
   assignCourts = () => {
     this.roundTeams.forEach((teams: Team[], i: number) => {
+      debugger;
       let courtNumber = 1;
       while(teams.length > 0) {
         if(teams.length >= 2) {
@@ -203,9 +206,12 @@ export class PoolPlayComponent implements OnInit {
           t2p2.pointDifferential += team2Diff;
         });
       }
-    }
 
-    console.log(this.pairInfo);
+      console.log("pairInfo: ", this.pairInfo);
+      localStorage.setItem("pairInfo", JSON.stringify(this.pairInfo));
+
+      this.router.navigateByUrl("/tournament");
+    }
   }
 
   shuffle = (array) => {
